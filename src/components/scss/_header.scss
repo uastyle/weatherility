@@ -1,0 +1,29 @@
+// -------------------------------------------------------------------------
+//		Header
+//--------------------------------------------------------------------------
+.header {
+	display: flex;
+	flex-flow: row nowrap;
+	// justify-content: space-around;
+	align-items: center;
+	height: 13vh;
+	border-bottom: 2px solid $secondary-color;
+
+	.wrapper {
+		margin: 0 5vw;
+	}
+
+	h3 {
+
+		&:before {
+			content: url(./../../images/logo.png);
+			display: inline-block;
+	    vertical-align: middle;
+	    font-style: normal;
+		}
+	}
+
+	p {
+		font-size: calc(4px + 2vmin);
+	}
+}

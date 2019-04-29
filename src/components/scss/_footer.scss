@@ -1,0 +1,21 @@
+// -------------------------------------------------------------------------
+//		Footer
+//--------------------------------------------------------------------------
+.footer {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	// align-content: flex-end;
+	align-items: center;
+	height: 7vh;
+	border-top: 2px solid $secondary-color;
+
+	p {
+		font-size: calc(8px + 2vmin);
+	}
+
+	.link {
+	  color: #61dafb;
+	  text-decoration: none;
+	}
+}
