@@ -30,7 +30,7 @@ const DetailedWeather = (
 					<p className='description'>{weathertext}</p>
 				</div>
 				<div className='weather-icon'>
-					<img src={icons['icon_'+icon]} alt='icon' />
+					<img src={`weather-icons/${icon}-s.png`} alt='icon' />
 				</div>
 			</div>
 
