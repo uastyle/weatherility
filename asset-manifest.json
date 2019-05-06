@@ -1,17 +1,13 @@
 {
-  "main.css": "/weatherility/static/css/main.7e828f2c.chunk.css",
-  "main.js": "/weatherility/static/js/main.a19c3234.chunk.js",
-  "main.js.map": "/weatherility/static/js/main.a19c3234.chunk.js.map",
+  "main.css": "/weatherility/static/css/main.595ea244.chunk.css",
+  "main.js": "/weatherility/static/js/main.8df0e994.chunk.js",
+  "main.js.map": "/weatherility/static/js/main.8df0e994.chunk.js.map",
   "runtime~main.js": "/weatherility/static/js/runtime~main.cd16f1dc.js",
   "runtime~main.js.map": "/weatherility/static/js/runtime~main.cd16f1dc.js.map",
-  "static/js/2.e9d7a9d4.chunk.js": "/weatherility/static/js/2.e9d7a9d4.chunk.js",
-  "static/js/2.e9d7a9d4.chunk.js.map": "/weatherility/static/js/2.e9d7a9d4.chunk.js.map",
+  "static/js/2.88ea1fd6.chunk.js": "/weatherility/static/js/2.88ea1fd6.chunk.js",
+  "static/js/2.88ea1fd6.chunk.js.map": "/weatherility/static/js/2.88ea1fd6.chunk.js.map",
   "index.html": "/weatherility/index.html",
-  "precache-manifest.69dcb6cdc8665d33a25e90489fba00e2.js": "/weatherility/precache-manifest.69dcb6cdc8665d33a25e90489fba00e2.js",
+  "precache-manifest.49bb9d26999b2e90f69f11ed8eebb0a6.js": "/weatherility/precache-manifest.49bb9d26999b2e90f69f11ed8eebb0a6.js",
   "service-worker.js": "/weatherility/service-worker.js",
-  "static/css/main.7e828f2c.chunk.css.map": "/weatherility/static/css/main.7e828f2c.chunk.css.map",
-  "static/media/15-s.png": "/weatherility/static/media/15-s.39ac499c.png",
-  "static/media/16-s.png": "/weatherility/static/media/16-s.0cf9cad1.png",
-  "static/media/17-s.png": "/weatherility/static/media/17-s.3c85da3e.png",
-  "static/media/41-s.png": "/weatherility/static/media/41-s.421c13f1.png"
+  "static/css/main.595ea244.chunk.css.map": "/weatherility/static/css/main.595ea244.chunk.css.map"
 }
