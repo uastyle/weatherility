@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "3ac1d715ac1d3b1f2b00",
-    "url": "/weatherility/static/css/main.595ea244.chunk.css"
+    "revision": "42b914be400c64f7e00a",
+    "url": "/weatherility/static/css/main.772d55a6.chunk.css"
   },
   {
-    "revision": "3ac1d715ac1d3b1f2b00",
-    "url": "/weatherility/static/js/main.8df0e994.chunk.js"
+    "revision": "42b914be400c64f7e00a",
+    "url": "/weatherility/static/js/main.081c6bdd.chunk.js"
   },
   {
     "revision": "20990c4dcef132fcc206",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/weatherility/static/js/2.88ea1fd6.chunk.js"
   },
   {
-    "revision": "26de2aca2ee1bf807639200df8980b1c",
+    "revision": "3c34782b3c2240cf5c1c81cebf062f5d",
     "url": "/weatherility/index.html"
   }
 ];
