@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/weatherility/precache-manifest.373f7d380ca7ec2f2e8a6a412690c516.js"
+  "/weatherility/precache-manifest.a3d69862c8d821d499d9de55b89fe28c.js"
 );
 
 workbox.clientsClaim();
