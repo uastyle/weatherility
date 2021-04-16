@@ -1,8 +1,13 @@
 {
   "name": "weatherility",
   "version": "0.1.0",
+  "description": "This repository contains the source for a weatherility app",
+  "author": "Oles Bilous",
   "homepage": "https://uastyle.github.io/weatherility",
   "private": true,
+  "bugs": {
+    "url": "https://github.com/uastyle/portfolio/issues"
+  },
   "devDependencies": {
     "react-scripts": "2.1.8"
   },
@@ -10,7 +15,10 @@
     "gh-pages": "^2.0.1",
     "node-sass": "^4.11.0",
     "react": "^16.8.5",
-    "react-dom": "^16.8.5"
+    "react-dom": "^16.8.5",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "predeploy": "npm run build",

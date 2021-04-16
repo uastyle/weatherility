@@ -1,0 +1,131 @@
+// -------------------------------------------------------------------------
+//		Dark mode 
+//--------------------------------------------------------------------------
+#root + .toggle {
+    display: block;
+    position: absolute;
+    top: 1vh;
+    left: 1vw;
+
+    input[type=checkbox] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        max-width: 94px;
+        height: 30px;
+        // opacity: 0;
+        cursor: pointer;
+        appearance: none;
+
+        // styles for moon ( `dark mode` on )
+        &::before {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(-50%, -50%);
+            content: '\0263D';
+        }
+
+        &:checked::before {
+            color: transparent;
+        }
+        
+        // Move the switch when the checkbox is checked and change the color
+        // styles for sun (`dark mode` off)
+        &:checked::after {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(50%, -50%);
+            color: var(--white);
+            content: '\02600';
+        }
+
+        &:checked ~ span::before {
+            background-color: var(--blue);
+        }
+        &:checked ~ span::after {
+            top: 0;
+            left: 65px;
+        }
+        &:hover ~ span::before {
+            background-color: #3db5eb;
+        }
+        &:not(:checked):hover ~ span::before {
+            background-color: #afbec9;
+        }
+        &:focus ~ span::before {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(21, 156, 228, 0.4);
+        }
+        
+        // We change the text and the color of the label when the dark mode overlay is enabled
+        &:checked ~ label::before {
+            content: "Turn off the light";
+        }
+
+        // This line toggles the dark mode overlay when the checkbox is checked
+         &:checked ~ .darkmode {
+            opacity: 1;
+        }
+
+    }
+
+    label {
+        &::before {
+            content: 'Turn on the light';// We place the text here so we can change it when the checbkox is clicked
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 100;
+            line-height: 1.5;
+            color: var(--white);
+        }
+    }
+    span {
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        cursor: pointer;
+
+        &::before {
+            display: block;
+            width: 94px;
+            height: 29px;
+            content: "";
+            background-color: #8296a4;
+            border-radius: 29px;
+            transition: background-color 0.3s ease;
+        }
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 1px;
+            display: block;
+            width: 29px;
+            height: 29px;
+            visibility: visible;
+            content: "";
+            background-color: var(--white);
+            border-radius: 29px;
+            transition: left 0.3s ease;
+        }                   
+    }
+
+    // This is the dark mode overlay we'll toggle when the checkbox is checked
+    .darkmode {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: 0;// We hide this overlay by default, since we'll be enabling it by clicking on the checkbox
+        transition: all .3s ease-in-out;
+        // These are the two lines that generate the dark mode effect
+        mix-blend-mode: difference;
+        background: var(--white);
+    }
+
+}

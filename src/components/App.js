@@ -1,17 +1,23 @@
-import React, { Component } from 'react';//import React from 'react';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './main/reducers/rootReducer';
 import Header from './header';
 import Main from './main';
 import Footer from './footer';
 import './scss/app.scss';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const store = createStore(rootReducer, composeWithDevTools());
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <Main />
-        <Footer />
-      </div>
+      <Provider store={store}>
+	        <Header />
+	        <Main />
+	        <Footer />
+      </Provider>
     );
   }
 }

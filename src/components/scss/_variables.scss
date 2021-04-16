@@ -1,6 +1,23 @@
 // -------------------------------------------------------------------------
 //    Variables
 //--------------------------------------------------------------------------
+$primary: #ffffff;
+// $primaryLight:;
+$primaryDark:  #798895;
+
+$secondary: linear-gradient(45deg, #05afe5 0%, #05e2b3 100%);
+// $secondaryLight:
+$secondaryDark: radial-gradient(ellipse at center, #6f6f6f 0%, #4a4a4a 100%);
+
+
+
+$theme-color: radial-gradient(ellipse at center, #6f6f6f 0%, #4a4a4a 100%);//delete
+$linear-gradient: linear-gradient(45deg, #05afe5 0%, #05e2b3 100%);//delete
 $primary-color: #ffffff;
 $secondary-color: #798895;
-$theme-color: #282c34;
+
+
+$circlearrowleft: '↺';
+$home: '⦾';
+$target: '⌖';
+$search: '⌕';

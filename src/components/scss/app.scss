@@ -5,13 +5,120 @@
 @import 'header';
 @import 'main';
 @import 'footer';
+@import 'bar';
+@import 'dataset';
+@import 'darkmode';
 
+// CSS variables
+html {
+  --white: #ffffff;
+  --blue: #147ec1;
+  --lgt-blue: #3db5eb;
+  --lgtr-blue: #a6f7ff;
+  --drk-blue: #1663a0;
+  --black: #32383c;
+}
+html,
+body {
+  height: 100%;
+}
 
 body {
-	width: 100%;
-	height: 100%;
   max-height: 100vh;
-  background-color: $theme-color;
-  color: #fff;
+  background: $secondaryDark;//The background here is important since it's the color we'll be changing with the mix-blend-mode
+  font-family: Helvetica,arial,system-ui,sans-serif;
   font-size: calc(10px + 2vmin);
+  // font-size-adjust: 0.6;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+  #root {
+    // grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: flex;
+    flex-flow: column nowrap;
+    // justify-content: center;
+    margin: 0 auto;
+    padding: 0 1.5vw;
+    height: inherit;
+    // min-height: 90vh;
+    // background: transparent;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
 }
+
+html:not([data-scroll='0']) {
+  .main {
+
+    margin: 0 0 10vmin;
+
+    .headline {
+      position: fixed;//sticky
+      top: 0;
+      z-index: 3;
+      margin: 0 calc(-3vw + 6px);
+      padding: 1vh 0;
+      width: 100%;
+      background: black;
+      -webkit-text-fill-color: red;
+    }
+  }
+  .current-weather {
+    .current-conditions {
+      grid-template-rows: 0.1fr 0.6fr 0.7fr repeat(1, 0.5fr) repeat(2, 0.3fr);
+    }
+    .localobservation-date-time {
+      position: fixed;
+      top: 4.5vh;
+      z-index: 3;
+      margin: 0 calc(-3vw + 6px);
+      width: 100%;
+      -webkit-text-fill-color:ivory;
+      font-size: 0.7rem;
+    }
+    .weather-type {
+      display: none;// !important
+    }
+    .head-info {
+      flex-flow: column wrap;
+      justify-content: space-between;
+      align-items: baseline;
+  
+      height: 8vh;
+      
+      p {
+        &:nth-of-type(n+1) {
+          margin: 0;
+        }
+      }
+      // .city {}
+      .temperature {
+        order: 1;
+        font-size: 50px;
+        transform: align-self(flex-end);
+      }
+      .realfeel {
+        visibility: collapse;
+      }
+      .weather-icon {
+        display: none;
+      }
+    }
+  }
+}
+
+// 
+// ::-webkit-scrollbar {
+//   width: 12px;
+// }
+// ::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  // border-radius: 10px;
+// }
+// ::-webkit-scrollbar-thumb {
+  // border-radius: 10px;
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+// }

@@ -1,0 +1,63 @@
+// -------------------------------------------------------------------------
+//    Location Search
+//--------------------------------------------------------------------------
+
+.location {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    -webkit-text-fill-color:violet;
+
+    & > .findlocation {
+        position: relative;
+        font-size: calc(13px + 2vmin);
+        
+        & > input {
+        padding: 0 0 0 20px;
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 7px;
+        outline: none;
+        // color: $theme-color;
+        // font-weight: 300;
+        }
+
+        &::after {
+        // content: '\27A2';
+        content: '⌖';
+        position: absolute;
+        top: 0.2vh;
+        left: 0.8vw;
+        }
+
+        input:focus div.chooselocation {
+        visibility: visible;
+        }
+
+        .chooselocation {
+        z-index: 6;
+        position: absolute;
+        margin: 0.5vh 0 0 0;
+        width: 100%;
+        border: 1px solid $secondary-color;
+        border-radius: 10px;
+        background-color: $theme-color;
+        
+        p {
+            padding: 1vh 0 1vh 2vh;
+            font-size: calc(6px + 2vmin);
+        }
+        }
+    }
+
+    .close {
+        visibility: hidden;
+    }
+    .date {
+        font-size: calc(6px + 2vmin);
+        font-weight: 500;
+        line-height: 1.5;
+    }
+}

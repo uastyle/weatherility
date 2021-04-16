@@ -2,28 +2,37 @@
 //		Header
 //--------------------------------------------------------------------------
 .header {
+	flex: 1 0 auto;// is a flex-child
+	
 	display: flex;
 	flex-flow: row nowrap;
-	// justify-content: space-around;
-	align-items: center;
-	height: 13vh;
-	border-bottom: 2px solid $secondary-color;
+	justify-content: flex-end;
+	// margin: 0 0 3vh;
+	padding: 1vh 0;
 
-	.wrapper {
-		margin: 0 5vw;
-	}
+	.logo {
 
-	h3 {
-
-		&:before {
-			content: url(./../../images/logo.png);
-			display: inline-block;
-	    vertical-align: middle;
-	    font-style: normal;
+		a {
+			text-align:end;
 		}
-	}
 
-	p {
-		font-size: calc(4px + 2vmin);
+		h3 {
+			position: relative;
+			font-size: 5vmin;
+			letter-spacing: 0.1vmin;
+
+			&::before {
+				content: url(./../../images/logo.png);
+				display: inline-block;
+				vertical-align: middle;
+				font-style: normal;
+			}
+		}
+		p {
+			margin: -1.5vmin 0 0;
+			opacity: 0.6;
+			font-size: calc(4px + 2vmin);
+		}
+		
 	}
 }

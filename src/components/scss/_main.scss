@@ -1,102 +1,277 @@
 // -------------------------------------------------------------------------
 //    Main
 //--------------------------------------------------------------------------
+@import 'currentweather';
+@import 'location';
+
 .main {
-  height: 80vh;
+  flex-grow: 10;
 
-  section {
-    margin: 0 5vw;
+  position: relative;
+  z-index: 2;// Add z-index to show them on top of the dark mode overlay and prevent the color change
+  background: $linear-gradient;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-    & > div {
-      margin: 0.5vh 0;
+  // Styles for tabs
+  > input[type=radio] {
+    display: none;
+  }
+
+  > label {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    position: fixed;
+    bottom: 0;
+    z-index: 3;
+    width: calc(100vw/3);
+    height: 7vh;
+    border-top: 1px solid $secondary-color;
+    background-image: $theme-color;
+    font-size: 4vmin;
+    transition: background-color .4s;
+    cursor: pointer;
+    user-select: none;
+    -webkit-text-fill-color: grey;
+    
+    &::before {
+      font-size: 6.5vmin;
+    }
+
+    &[for=tab-nav-1] {
+      left: 0;
+      transform: translate(0, 0);
       
-      p {
-        margin: 0.7vh 0;
-        font-size: calc(6px + 2vmin);
-        font-weight: 500;
+      &::before {
+        content: '⚓';
       }
-      span {
-        font-weight: 300;
+    }
+
+    &[for=tab-nav-2] {
+      left: 0;
+      transform: translate(100%, 0);
+      
+      &::before {
+        content: '⛅';
+      }
+    }
+
+    &[for=tab-nav-3] {
+      right: 0;
+      transform: translate(0, 0);
+
+      &::before {
+        content: '🧭';
       }
     }
   }
+  
+  .refreshbtn {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 
-  // first section
-  .current-information {
+    position: fixed;
+    right: 2vw;
+    top: 20vmin;
+    z-index: 2;
+    transform: translate(0, 0);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    // outline: none;
+    background-image: $theme-color;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color .4s;
+    cursor: pointer;
+    user-select: none;
+    -webkit-text-fill-color:black;
+
+    &::before {
+      content: '🔄';
+    }
+
+    &:hover {
+        transform: rotate(280deg);
+        transition: 2.70s;
+        opacity: 0.6;
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: -1;
+   
+    .tab {
+      display: none;
+    }
+  }
+
+  #tab-nav-1:checked ~ .container > div:nth-child(1),
+  #tab-nav-2:checked ~ .container > div:nth-child(2),
+  #tab-nav-3:checked ~ .container > div:nth-child(3) {
+    display: block;
+  }
+  // .Styles for tabs
+
+
+
+
+  .weatherforecast {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    // align-items: center;
 
-    border-bottom: 1px solid $secondary-color;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    // scrollbar-color: rebeccapurple green;
+    // scrollbar-width: thin;
 
-    .right-side {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      align-items: center;
+    font-size: 0.8rem;
+    padding-bottom: 5vmin;
 
-      .temperature {
-        font-size: calc(18px + 2vmin);
-        font-weight: 400;
-      }
-    }
-  }// .first section
+    .hourlyforecast {
+      position: relative;
+      margin: 0 1vmin;
+      padding-top: 5vmin;
+      text-align: center;
 
-  // second section
-  .detailed-weather {
-
-    .weather-type {
-      margin: 1vh 0 0 0;
-      color: $secondary-color;
-      font-size: calc(6px + 2vmin);
-      text-transform: lowercase;
-    }
-
-    .head-info {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-
-      .temperature {
-        font-size: calc(50px + 2vmin);
-        font-weight: 400;
-        letter-spacing: -2px;
-      }
-
-      .realfeel {
-        font-size: calc(6px + 2vmin);
-        font-weight: 400;
-
-        span {
-          font-weight: 600;
+      &:first-of-type {
+        .hour {
+          &::before {
+            content: 'Сьогодні';
+            position: absolute;
+            bottom: 22vmin;
+            left: 0;
+            -webkit-text-fill-color:white;
+          }
         }
       }
 
-      .description {
-        margin: 2.5vh 0;
-        font-size: calc(15px + 2vmin);
-      }
-
       .weather-icon {
-        align-self: center;
-        width: 145px;
-        height: 87px;
+        width: 10vw;
+        height: 4vh;
 
         img {
           width: 100%;
           height: auto;
         }
       }
-      
-    }
+      .precipitationprobability {
+        font-size: 0.7rem;
 
-    .extra-info {
-      .pressure {
-        // display: none;
+        &::before {
+          content: '☂';
+        }
+        &::after {
+          content: '%';
+        }
       }
     }
-  }// .second section
+    .temperature {
+      margin-top: 5vmin;
 
-  
+      &::after {
+        content: '°';
+      }
+    }
+  }
+
+
+  // daily forecasts
+  .dailyforecasts {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    margin: 2vh auto;
+
+    .dailyforecast {
+      text-align: center;
+
+      &:first-of-type {
+        .day {
+          &::before {
+            content: '🗓';
+            position: absolute;
+            left: 0;
+            -webkit-text-fill-color:invert($color: #000000);
+          }
+        }
+        .weather-icon {}
+        .sunnyhours {
+          &::before {
+            content: '🌞';
+            position: absolute;
+            left: 0;
+            -webkit-text-fill-color:invert($color: #000000);
+          }
+          &:hover {
+            &::after {
+              content: 'Кількість сонячних годин';
+              position: absolute;
+              left: 0;
+              bottom: 10vh;
+              width: 50vmin;
+              height: auto;
+              background: rgba($color: #ffffff, $alpha: 0.9);
+              -webkit-text-fill-color:#000000;
+            }
+          }
+        }
+        .temperaturemin {
+          &::before {
+            content: '🌡';
+            position: absolute;
+            left: 0;
+            -webkit-text-fill-color:invert($color: #000000);
+          }
+        }
+        .temperaturemax {
+          &::before {
+            content: '🌡';
+            position: absolute;
+            left: 0;
+            -webkit-text-fill-color:invert($color: #000000);
+          }
+        }
+      }
+      
+      
+
+      .weather-icon {
+        width: 15vmin;
+        height: 10vmin;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .temperaturemin,
+      .temperaturemax {
+        &::after {
+          content: '°';
+        }
+      }
+    }
+  }
+
+}
+
+.disablelocation {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  text-align: center;
 }

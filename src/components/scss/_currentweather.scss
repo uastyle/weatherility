@@ -1,0 +1,389 @@
+// -------------------------------------------------------------------------
+//    Current Conditions
+//--------------------------------------------------------------------------
+
+// Current weather Section
+  .current-weather {
+
+    // Headline
+    .headline {
+        display: block;
+        height: 7vh;
+        white-space: nowrap;
+        transition: all 0.75s cubic-bezier(.71,0,.33,1.56) 0ms;
+        overflow-x: hidden;
+        text-align: center;
+
+        .headline-inner {
+            display: inline-block;
+            position: sticky;
+            top: 0;
+
+            .markee {
+                white-space: nowrap;
+            }
+            .active {
+                animation: floatText 8s infinite linear;
+        
+                &:hover {
+                    animation-play-state: paused;
+                }
+        
+                @keyframes floatText {
+                    to {
+                        transform: translateX(-50%);
+                    }
+                }
+            }
+        }
+
+    }// .Headline
+    
+    // Grid layout
+    .current-conditions {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(50px, 1fr));
+      grid-template-rows: 3.5fr 0.9fr repeat(1, 1.6fr) repeat(3, 0.5fr);//repeat(auto-fit, minmax(180px, 1fr))
+      grid-gap: 1px;
+
+      & > div {
+
+        &:nth-child(1) {
+          grid-column: 1 / 5;
+        }
+        &:nth-child(2) {
+          grid-column: 1 / 5;
+        }
+        &:nth-child(3) {
+          grid-column: 1 / 2;
+
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          align-content: center;
+          text-align: center;
+        }
+        &:nth-child(4) {
+          grid-column: 2 / 3;
+          
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          align-content: center;
+          text-align: center;
+        }
+        &:nth-child(5) {
+          grid-column: 3 / 4;
+          
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          align-content: center;
+          text-align: center;
+        }
+        &:nth-child(6) {
+          grid-column: 4 / 5;
+
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          align-content: center;
+          text-align: center;
+        }
+        &:nth-child(7) {
+          grid-column: 1 / 5;
+
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+          align-items: center;
+        }
+        &:nth-child(8) {
+          grid-column: 1 / 3;
+
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: center;
+          align-items: center;
+        }
+        &:nth-child(9) {
+          grid-column: 1 / 3;
+          
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: center;
+          align-items: center;
+        }
+        &:nth-child(10) {
+          grid-column: 3 / 5;
+
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: center;
+          align-items: center;
+        }
+        //localobservation-date-time
+        &:nth-child(11) {
+          grid-column: 1 / 5;
+
+          display: flex;
+          flex-flow: row nowrap;
+          // justify-content: center;
+          align-items: center;
+          border-bottom: 1px solid grey;
+        }
+        &:nth-child(12) {
+          grid-column: 1 / 5;
+        }
+      }
+    }// .Grid layout
+
+    .weather-type {
+      font-size: calc(6px + 2vmin);
+      text-transform: lowercase;
+    }
+
+    .head-info {
+      // text-align: center;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+
+      .city {
+        // transition: transform 2500ms linear;
+        // transition: transform 1500ms;
+        // will-change: transform;
+        transition: all 0.75s cubic-bezier(.71,0,.33,1.56) 0ms;
+      }
+
+      .temperature {
+        margin: 1vh 0;
+        font-size: calc(50px + 2vmin);
+        font-weight: 300;
+        letter-spacing: -4px;
+        text-transform: lowercase;
+        transition: all 0.75s cubic-bezier(.71,0,.33,1.56) 0ms;
+      }
+
+      .description {
+        margin: 0.5vh 0;
+        font-size: calc(15px + 2vmin);
+      }
+
+      .realfeel {
+        font-size: calc(6px + 2vmin);
+        font-weight: 400;
+
+        span {
+          text-transform: lowercase;
+        }
+      }
+
+      .weather-icon {
+        align-self: center;
+        width: 30vmin;
+        height: 15vmin;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      
+    }
+
+
+    .extra-info {
+      font-size: calc(8px + 2vmin);
+      line-height: 1.4;
+
+      p {
+        font-size: calc(12px + 2vmin);
+      }
+
+      // CHART LISTS https://github.com/alistapart/code-samples/blob/master/accessibledata/example-barchart.html
+      .chartlist {
+        // border-top: 1px solid #EEE;
+
+        li {
+          display: block;
+          position: relative;
+          $border: 2px;
+          background-clip: padding-box; // !important
+          border: solid $border transparent; // !important
+          border-radius: 1em;
+          color: #FFF;
+          // border-bottom: 1px solid #EEE;
+          _zoom: 1;
+
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -$border; // !important
+            border-radius: inherit; // !importanté
+            background: linear-gradient(to right, green, yellow, orange, red, violet);
+          }
+          
+          &:hover {
+            // background: #EFEFEF;
+            cursor: none;
+          }
+
+          a {
+            z-index: 2;
+            display: block;
+            position: relative;
+            padding: 0.4em 4.5em 0.4em 0.5em;
+            -webkit-text-fill-color:invert($color: #000000);
+          }
+        }
+
+        .count {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          margin: 0 0.3em;
+          text-align: right;
+          // color: #999;
+          font-weight: bold;
+          // font-size: 0.875em;
+          line-height: 2em;
+          background: $linear-gradient;
+          background-clip: text;
+        }
+
+        .index {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          max-width: 100%;
+          height: 100%;
+          border-radius: inherit; // !important
+          // background: rgb(114,255,0);
+          // background: linear-gradient(90deg, rgba(114,255,0,1) 0%, rgba(255,177,0,1) 35%, rgba(255,0,183,1) 100%);
+          // background-image: linear-gradient(90deg, #14c406 1%, #ffcc25 25%, #f39428 50%, #f45701 70%, #f425f3 90%);
+          background-color: black;
+          opacity: 0.6;
+          text-indent: -9999px;
+          overflow: hidden;
+          line-height: 2em;
+        }
+
+        @for $i from 0 through 12 {
+          .percentage-#{$i} {
+            $value: ($i * 8.33%);
+            width: $value;
+          }
+        }
+
+      }
+    }
+
+
+
+
+
+    // localobservation-date-time
+    .localobservation-date-time {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      padding: 0 2vw 0.5vh;
+      border-bottom: 1px solid $primaryDark;
+    }
+
+
+
+
+
+    
+
+    // CSS Bar Chart https://codepen.io/team/css-tricks/pen/b46b85162c40677686cc4080baea8d02
+    .precipitation {
+      display: none;
+      dl {
+        display: flex;
+        // background-color: white;
+        flex-direction: column;
+        width: 100%;
+        max-width: 700px;
+        position: relative;
+        padding: 20px;
+      }
+      
+      dt {
+        align-self: flex-start;
+        // width: 100%;
+        font-weight: 700;
+        display: block;
+        // text-align: center;
+        font-size: 1.2em;
+        font-weight: 700;
+        margin-bottom: 20px;
+        // margin-left: 130px;
+      }
+      
+      .text {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        width: 130px;
+        // background-color: white;
+        position: absolute;
+        left: 0;
+        justify-content: flex-end;
+      }
+      
+      .percentage {
+        font-size: .8em;
+        line-height: 1;
+        text-transform: uppercase;
+        width: 100%;
+        height: 40px;
+        margin-left: 130px;
+        background: repeating-linear-gradient(
+        to right,
+        #ddd,
+        #ddd 1px,
+        #fff 1px,
+        #fff 5%
+      );
+        
+        &:after {
+          content: "";
+          display: block;
+          background-color: #3d9970;
+          width: 50px;
+          margin-bottom: 10px;
+          height: 90%;
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: background-color .3s ease;
+          cursor: pointer;
+        }
+        &:hover,
+        &:focus {
+          &:after {
+             background-color: #aaa; 
+          }
+        }
+      }
+      
+      @for $i from 0 through 100 {
+        .percentage-#{$i} {
+          &:after {
+            $value: ($i * 1%);
+            width: $value;
+          }
+        }
+      }
+    }// .CSS Bar Chart
+
+  }// .first section

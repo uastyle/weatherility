@@ -1,6 +1,6 @@
 {
-  "short_name": "Weatherility",
-  "name": "Weatherility – weather forecast without devilry",
+  "short_name": "weatherility",
+  "name": "weatherility – weather forecast without devilry",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
