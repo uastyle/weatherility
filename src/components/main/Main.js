@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { APIKEY } from './types';
 
-import CurrentConditions from './components/currentconditions';
+import CurrentConditions from './components/CurrentConditions';
 
-import Headline from './components/headline';
+import Headline from './components/Headline';
 
-import HourlyForecast from './components/hourlyforecast';
-import DailyForecasts from './components/forecast';
-import ChooseLocation from './components/location';
+import HourlyForecast from './components/HourlyForecast';
+import DailyForecasts from './components/DailyForecasts';
+import ChooseLocation from './components/ChooseLocation';
 
 import { saveHoursOfSunToLocalStorage } from './utils';
 
-import DataSet from './components/dataset';
+import DataSet from './components/DataSet';
 
 
 export default class Main extends Component {

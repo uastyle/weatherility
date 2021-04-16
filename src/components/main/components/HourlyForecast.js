@@ -1,5 +1,5 @@
 import React from 'react';
-import { localObservationHour } from '../../utils.js';
+import { localObservationHour } from '../utils.js';
 
 const HourlyForecast = ({
     date,//just the local hour of observation

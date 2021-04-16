@@ -1,5 +1,5 @@
 import React from 'react';
-import { localObservationDate, localObservationTime, pressuremmHg, windspeedtoms } from '../../utils.js';
+import { localObservationDate, localObservationTime, pressuremmHg, windspeedtoms } from '../utils.js';
 
 const CurrentConditions = ({ 	
 	time,

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Component from './component';
+import Component from './Main';
 import { setCurrentConditions, setHourlyForecast,setHeadline,setDailyForecast } from './actions/currentAction';
 
 const mapStateToProps  = (state) => ({

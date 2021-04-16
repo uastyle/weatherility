@@ -1,5 +1,5 @@
 import React from 'react';
-import { localObservationDay } from '../../utils.js';
+import { localObservationDay } from '../utils.js';
 
 const DailyForecasts = ({
     date,//just the day of week
