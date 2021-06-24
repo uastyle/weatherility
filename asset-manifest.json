@@ -1,5 +1,5 @@
 {
-  "main.css": "/weatherility/static/css/main.81117a56.chunk.css",
+  "main.css": "/weatherility/static/css/main.ceb9a8d6.chunk.css",
   "main.js": "/weatherility/static/js/main.c2ff8009.chunk.js",
   "main.js.map": "/weatherility/static/js/main.c2ff8009.chunk.js.map",
   "runtime~main.js": "/weatherility/static/js/runtime~main.cd16f1dc.js",
@@ -7,7 +7,7 @@
   "static/js/2.3c3a0a33.chunk.js": "/weatherility/static/js/2.3c3a0a33.chunk.js",
   "static/js/2.3c3a0a33.chunk.js.map": "/weatherility/static/js/2.3c3a0a33.chunk.js.map",
   "index.html": "/weatherility/index.html",
-  "precache-manifest.a05eb7788d6a6bb8245549444d49e299.js": "/weatherility/precache-manifest.a05eb7788d6a6bb8245549444d49e299.js",
+  "precache-manifest.82cf192231c4fb6b402840a93da7a3f8.js": "/weatherility/precache-manifest.82cf192231c4fb6b402840a93da7a3f8.js",
   "service-worker.js": "/weatherility/service-worker.js",
-  "static/css/main.81117a56.chunk.css.map": "/weatherility/static/css/main.81117a56.chunk.css.map"
+  "static/css/main.ceb9a8d6.chunk.css.map": "/weatherility/static/css/main.ceb9a8d6.chunk.css.map"
 }
