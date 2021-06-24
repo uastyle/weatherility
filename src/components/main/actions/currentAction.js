@@ -18,7 +18,7 @@ export const setHourlyForecast = (hourlyforecast) => ({
   payload: hourlyforecast
 });
 
-export const setDailyForecast = (forecast) => ({
+export const setDailyForecast = (dailyforecast) => ({
   type: SET_DAILY_FORECAST,
-  payload: forecast
+  payload: dailyforecast
 });

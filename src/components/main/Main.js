@@ -1,224 +1,54 @@
-import React, { Component } from 'react';
-import { APIKEY } from './types';
-
-import CurrentConditions from './components/CurrentConditions';
-
-import Headline from './components/Headline';
-
+import React from 'react';
+import useMain from './useMain';
+import Headinfo from './components/Headinfo';
 import HourlyForecast from './components/HourlyForecast';
-import DailyForecasts from './components/DailyForecasts';
-import ChooseLocation from './components/ChooseLocation';
-
-import { saveHoursOfSunToLocalStorage } from './utils';
-
+import DailyForecast from './components/DailyForecast';
+import CurrentConditions from './components/CurrentConditions';
+import Location from './components/Location';
 import DataSet from './components/DataSet';
 
 
-export default class Main extends Component {
-  state = {
-    initialState: {},
-    geoposition: null,
-    geopositionStatus: null,
-    locationKey: null,
-    status: false
-  };
+const Main = () => {
+  const {
+    weatherByCityKey,
+    weatherByUpdate,
+    headline,
+    weather,
+    hourlyforecast,
+    dailyforecast,
+    globalStatus,
+    statusGeoposition
+  } = useMain();
 
-  componentDidMount() {
-    this.getGeoPosition();
-  }
+  return(
+    <React.Fragment>
+      <main className='main' role='main'>
 
-  getGeoPosition = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+        <input type='radio' name='tab' id='tab-nav-1' />
+        <label htmlFor="tab-nav-1">Історія</label>
 
-      this.getKeyLocation(latitude, longitude);
-      
-      this.setState((state) => ({
-        ...state,
-        geopositionStatus: 'success'
-    }))},
-    () => {
-      this.setState((state) => ({
-        ...state,
-        geopositionStatus: 'error'
-    }))})
-  }
+        <input type='radio' name='tab' id='tab-nav-2' defaultChecked />
+        <label htmlFor='tab-nav-2'>Погода</label>
 
-  getKeyLocation = (latitude, longitude) => {
-    fetch(
-        `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${APIKEY}&q=${latitude}%2C${longitude}&language=uk-Ua&details=true&toplevel=true`
-    ).then((res) => {
-      return res.json()
-    })
-    .then((res) => {
-        this.setState((state) => ({
-          ...state,
-          locationKey: res.Key
-        }))
-        this.getCurrentConditions(res.Key, res.LocalizedName);
-        this.getHourlyForecast(res.Key);
-        this.getDailyForecast(res.Key);
-    });
-  }
+        <input type='radio' name='tab' id='tab-nav-3' />
+        <label htmlFor='tab-nav-3'>Локації</label>
 
-  weatherByCityKey = (key, city) => {
-    if (!key) {
-      return
-    }
-    this.setState((state) => ({
-      ...state,
-      locationKey: key
-    }))
-    this.getCurrentConditions(key, city);
-    this.getHourlyForecast(key);
-    this.getDailyForecast(key);
-  }
+        <div className='container'>
 
-  getCurrentConditions = (key, city) => {
-    fetch(`https://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${APIKEY}&language=uk-ua&details=true`)
-      .then((res) => {
-        return res.json()
-      })
-      .then((res) => {
-        // console.log('weather', res[0]);
+          <div className='tab'>
+            <DataSet />
+          </div>
 
-        const {
-          LocalObservationDateTime: time,
-          Temperature: {Metric: temperature},
-          RealFeelTemperature: {Metric: realfeel},
-          RealFeelTemperatureShade: {Metric: realfeelshade},
-          WeatherText: weathertext,
-          WeatherIcon: icon,
-          PrecipitationSummary: {Precipitation: {Metric: precipitation}},
-          Pressure: {Metric: pressure},
-          DewPoint: {Metric: dewpoint},
-          RelativeHumidity: humidity,
-          Visibility: {Metric: visibility},
-          Wind: {Direction: winddirection},
-          Wind: {Speed: {Metric: windspeed}},
-          CloudCover: cloudcover,
-          Ceiling: {Metric: ceiling},
-          UVIndex: uvindex,
-          UVIndexText: uvindextext
-        } = res[0];
-
-        this.props.setCurrentConditions({
-          status: true,
-          weather: {
-            city,
-            time,
-            temperature,
-            realfeel,
-            realfeelshade,
-            weathertext,
-            icon,
-            precipitation,
-            pressure,
-            dewpoint,
-            humidity,
-            visibility,
-            winddirection,
-            windspeed,
-            cloudcover,
-            ceiling,
-            uvindex,
-            uvindextext
-          }
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      }
-    )
-  }
-
-  getHourlyForecast = (key) => {
-    fetch(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${key}?apikey=${APIKEY}&language=uk-ua&details=true&metric=true`)
-      .then((res) => {
-        return res.json()
-      })
-      .then((res) => {
-        console.log('12 hours forecast', res);
-
-        this.props.setHourlyForecast({
-          status: true,
-          hourlyforecast: res
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-    })
-  }
-
-  getDailyForecast = (key) => {
-    fetch(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${APIKEY}&language=uk-ua&details=true&metric=true`)
-      .then((res) => {
-        return res.json()
-      })
-      .then((res) => {
-        console.log('headline', res.Headline);
-        console.log('forecast', res.DailyForecasts);
-        
-        const {
-          Headline: headline,
-          DailyForecasts: forecast
-        } = res;
-
-        saveHoursOfSunToLocalStorage(forecast);
-
-        this.props.setHeadline({
-          status: true,
-          headline
-        })
-
-        this.props.setDailyForecast({
-          status: true,
-          forecast
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-    })
-  }
-
-  render() {
-    const { statusGeoposition, locationKey } = this.state;
-    const { weather: { city }, status, headline, weather, hourlyforecast, forecast } = this.props.currentConditions;
-    console.log('hourlyforecast', hourlyforecast);
-    // const {Minimum, Maximum} = item.Temperature;
-    // const {Temperature: {Minimum, Maximum}} = item;
-
-    return(
-      <React.Fragment>
-        <section className='main'>
-
-          <input type="radio" name="tab" id="tab-nav-1" />
-          <label htmlFor="tab-nav-1">Історія</label>
-          <input type="radio" name="tab" id="tab-nav-2" defaultChecked />
-          <label htmlFor="tab-nav-2">Погода</label>
-          <input type="radio" name="tab" id="tab-nav-3" />
-          <label htmlFor="tab-nav-3">Локації</label>
-          <button className='refreshbtn' onClick={this.weatherByCityKey.bind(this, locationKey, city)}></button>
-
-          <div className='container'>
-
-            <div className='tab'>
-              <DataSet />
-            </div>
-
-            <div className='tab'>
-            { status &&
-
-              <main className='' role='main'>
-
-                <section className='current-weather'>
-                  <Headline {...headline} />
-
-                  <CurrentConditions {...weather}  />
+          <div className='tab'>
+            
+            { globalStatus &&
+              <React.Fragment>
+              
+                <section className='head'>
+                  <Headinfo {...weather} />
                 </section>
 
-                <section className='weatherforecast'>
+                <section className='hourlyforecast'>
                   { hourlyforecast.map((item) => (
                     <HourlyForecast 
                       date={item.Date}
@@ -231,13 +61,15 @@ export default class Main extends Component {
                   ))}
                 </section>
 
-                <section className='dailyforecasts'>
-                  { forecast.map((item) => (
-                    <DailyForecasts 
+                <section className='dailyforecast'>
+                  { dailyforecast.map((item) => (
+                    <DailyForecast 
                       date={item.Date} 
                       key={item.Date} 
                       icon={item.Icon} 
                       alt={item.IconPhrase} 
+                      precipitationprobabilityday={item.PrecipitationProbability} 
+                      // precipitationprobabilitynight={item.Night.PrecipitationProbability}
                       sunnyhours={item.HoursOfSun} 
                       temperaturemin={item.Minimum} 
                       temperaturemax={item.Maximum}
@@ -245,26 +77,31 @@ export default class Main extends Component {
                   ))}
                 </section>
 
-              </main>
+                <section className='current-weather'>
+                  <CurrentConditions {...weather} />
+                </section>
+
+                <button className='refreshbtn' onClick={weatherByUpdate}></button>
+
+              </React.Fragment>
             }
 
-            </div>
-            
-            
-            { statusGeoposition === 'error' && 
-            <section className='disablelocation'>
-              <h1>Please Enable your Location!</h1>
-            </section>
+            { !globalStatus && 
+              <section className='disablelocation'>
+                <h1>Please enable your geoposition or try to search location you need!</h1>
+              </section>
             }
-
-            <div className='location tab'>
-              <ChooseLocation weatherByCityKey={this.weatherByCityKey} />
-            </div>
-            
           </div>
 
-        </section>
-      </React.Fragment>
-    )
-  }
+          <div className='location tab'>
+            <Location weatherByCityKey={weatherByCityKey} />
+          </div>
+            
+        </div>
+
+      </main>
+    </React.Fragment>
+  )
 }
+
+export default Main;

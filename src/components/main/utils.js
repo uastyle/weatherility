@@ -1,30 +1,38 @@
 // The debounce function receives our function as a parameter
 const debounce = (fn) => {
-// This holds the requestAnimationFrame reference, so we can cancel it if we wish
-let frame;
-// The debounce function returns a new function that can receive a variable number of arguments
-return (...params) => {
-	// If the frame variable has been defined, clear it now, and queue for next frame
-	if (frame) { 
-	cancelAnimationFrame(frame);
-	}
-	// Queue our function call for the next frame
-	frame = requestAnimationFrame(() => {
-	// Call our function and pass any params we received
-	fn(...params);
-	});
 
-} 
+	// This holds the requestAnimationFrame reference, so we can cancel it if we wish
+	let frame;
+
+	// The debounce function returns a new function that can receive a variable number of arguments
+	return (...params) => {
+
+		// If the frame variable has been defined, clear it now, and queue for next frame
+		if (frame) { 
+			cancelAnimationFrame(frame);
+		}
+		
+		// Queue our function call for the next frame
+		frame = requestAnimationFrame(() => {
+
+			// Call our function and pass any params we received
+			fn(...params);
+		});
+
+	} 
 };
 // Reads out the scroll position and stores it in the data attribute
 // so we can use it in our stylesheets
 const storeScroll = () => {
-document.documentElement.dataset.scroll = window.scrollY;
+	document.documentElement.dataset.scroll = window.scrollY;
 }
 // Listen for new scroll events, here we debounce our `storeScroll` function
 document.addEventListener('scroll', debounce(storeScroll), { passive: true });
 // Update scroll position for first time
 storeScroll();
+
+
+
 
 
 const months = ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 
@@ -46,9 +54,9 @@ export const localObservationTime = (date) => {
 };
 
 export const localObservationHour = (date) => {
-	const currentObservationHour = new Date(date);
+	const currentDate = new Date(date);
 
-	return `${currentObservationHour.getHours()}`;
+	return `${currentDate.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' })}`;
 };
 
 export const localObservationDay = (date) => {
@@ -70,13 +78,13 @@ export const windspeedtoms = (num) => {
 	}
 };
 
-export const saveHoursOfSunToLocalStorage = (forecast) => {
+export const saveHoursOfSunToLocalStorage = (dailyforecast) => {
 	const localStorageHoursOfSun = JSON.parse(localStorage.getItem('hoursOfSun')) || [];
 	
 	console.log('localStorageHoursOfSun', localStorageHoursOfSun);
-	console.log('forecast', forecast);
+	console.log('Daily forecasts', dailyforecast);
 
-	forecast.forEach(element => {
+	dailyforecast.forEach(element => {
 		// debugger
 		const found = localStorageHoursOfSun.findIndex(item => item.Date === element.Date);
 		

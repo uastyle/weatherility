@@ -1,0 +1,63 @@
+// -------------------------------------------------------------------------
+//    Hourly Forecast
+//--------------------------------------------------------------------------
+
+.hourlyforecast {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    padding-bottom: 4vmin;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-color: rebeccapurple green;// TODO Check in different browsers
+    scrollbar-width: thin;// TODO Check in different browsers
+    font-size: 0.8rem;
+
+    .hourlyforecast__item {
+      position: relative;
+      margin: 0 1.5vmin;
+      padding-top: 5vmin;
+      text-align: center;
+
+      &:first-of-type {
+        .hour {
+          &::before {
+            content: 'Сьогодні';
+            position: absolute;
+            left: 0; top: 1.5vmin;
+            font-size: 0.6rem;
+            -webkit-text-fill-color:white;
+          }
+        }
+      }
+
+      .weather-icon {
+        width: 12vmin;
+        height: 7vmin;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .precipitationprobability {
+        font-size: 0.7rem;
+
+        &::before {
+          content: '☂';
+          margin-right: 0.2rem;
+        }
+        &::after {
+          content: '%';
+        }
+      }
+    }
+    .temperature {
+      margin-top: 3vmin;
+
+      &::after {
+        content: '°';
+      }
+    }
+  }

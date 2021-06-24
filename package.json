@@ -1,7 +1,7 @@
 {
-  "name": "weatherility",
+  "name": "Weatherility",
   "version": "0.1.0",
-  "description": "This repository contains the source for a weatherility app",
+  "description": "This repository contains the source for a weather app",
   "author": "Oles Bilous",
   "homepage": "https://uastyle.github.io/weatherility",
   "private": true,
@@ -12,6 +12,7 @@
     "react-scripts": "2.1.8"
   },
   "dependencies": {
+    "eslint": "5.12.0",
     "gh-pages": "^2.0.1",
     "node-sass": "^4.11.0",
     "react": "^16.8.5",

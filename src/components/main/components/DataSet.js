@@ -2,14 +2,36 @@ import React from 'react';
 
 const DataSet = ({
 
+	precipitation, 
+
+	humidity, 
+
+	cloudcover, 
+	uvindex, 
+	uvindextext
 }) => {
+
+    if (!humidity || !cloudcover || !precipitation) {
+		return null
+	}
+
     return (
         <section className='dataset'>
+
+            <div className='precipitation'>
+                <dl>
+                    <dt>Деталі</dt>
+                    <dd className={`percentage percentage-${humidity}`}><span className="text">Вологість: {humidity}%</span></dd>
+                    <dd className={`percentage percentage-${cloudcover}`}><span className="text">Хмарний покрив: {cloudcover}%</span></dd>
+                    <dd className={`percentage percentage-${uvindex}`}><span className="text">Максимальний індекс УФ: {uvindex} ({uvindextext})</span></dd>
+                    <dd className={`percentage percentage-${Number(precipitation.Value) ? precipitation.Value : '0'}`}><span className="text">Опади: {Number(precipitation.Value) ? precipitation.Value : '0'} мм</span></dd>
+                </dl>
+            </div>
         
             <figure>
                 <ul className="sparklist">
                     <li>
-                        <a href="#">:)</a>
+                        {/* <a href="#">:)</a> */}
                         <span className="sparkline">
                         <span className="index"><span className="count" style={{height: 27 + '%'}} >(60,</span> </span>
                         <span className="index"><span className="count" style={{height: 98 + '%'}} >220,</span> </span>

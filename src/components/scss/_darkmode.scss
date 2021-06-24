@@ -2,10 +2,10 @@
 //		Dark mode 
 //--------------------------------------------------------------------------
 #root + .toggle {
-    display: block;
+    display: none;
     position: absolute;
-    top: 1vh;
-    left: 1vw;
+    top: 1vmin;
+    right: 1vmin;
 
     input[type=checkbox] {
         position: absolute;

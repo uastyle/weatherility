@@ -9,10 +9,10 @@ const HourlyForecast = ({
     temperature
 }) => {
     return (
-        <article className='hourlyforecast'>
+        <article className='hourlyforecast__item'>
             <div className=''>
                 <time className='hour'>{!!date && localObservationHour(date)}</time>
-                <div className='weather-icon'><img src={`weather-icons/${icon}-s.png`} alt={`${alt}`} /></div>
+                <div title={`${alt}`} className='weather-icon'><img src={`weather-icons/${icon}-s.png`} alt={`${alt}`} /></div>
                 <div className='precipitationprobability'>{precipitationprobability}</div>
                 {
                     !!temperature &&

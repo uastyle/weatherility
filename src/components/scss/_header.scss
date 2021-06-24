@@ -1,38 +1,79 @@
 // -------------------------------------------------------------------------
 //		Header
 //--------------------------------------------------------------------------
-.header {
-	flex: 1 0 auto;// is a flex-child
-	
+.header {	
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: flex-end;
-	// margin: 0 0 3vh;
-	padding: 1vh 0;
+	justify-content: flex-start;
+	
+	padding: 1vmin 0;
 
 	.logo {
 
 		a {
-			text-align:end;
-		}
+			// text-align: end;
 
-		h3 {
-			position: relative;
-			font-size: 5vmin;
-			letter-spacing: 0.1vmin;
+			h3 {
+				position: relative;
+				// background: $linear-gradient;
+				// background-clip: text;
+				// -webkit-text-fill-color: transparent;
+				font-size: 3.5vmin;
 
-			&::before {
-				content: url(./../../images/logo.png);
-				display: inline-block;
-				vertical-align: middle;
-				font-style: normal;
+				&::before {
+					content: url(./../../images/logo.png);
+					display: inline-block;
+					vertical-align: middle;
+					font-style: normal;
+				}
+			}
+			p {
+				position: relative;
+				font-size: 2.5vmin;
 			}
 		}
-		p {
-			margin: -1.5vmin 0 0;
-			opacity: 0.6;
-			font-size: calc(4px + 2vmin);
+
+		$speed: 5s;
+		$wordCount: 2;
+
+		.morphing {
+			position: relative;
+			min-height: 3vmin;
+			// color: var(--white);
+			filter: contrast(25) blur(0.5px);
+
+			.word {
+				position: absolute;
+				top: 0; right: 0;
+				transform: translate(0, 0);
+				-webkit-text-fill-color: aqua;
+				// background: $linear-gradient;
+				// background-clip: text;
+				// -webkit-text-fill-color: transparent;
+				
+				animation: word $speed infinite ease-in-out;
+	
+				@for $i from 0 to $wordCount {
+					&:nth-child(#{$i + 1}) {
+					animation-delay: ($speed / ($wordCount + 1) * $i) - $speed;
+					}
+				}
+	
+				@keyframes word {
+					0%, 5%, 100% { filter: blur(0px); opacity: 1; }        
+					20%, 80% { filter: blur(1em); opacity: 0; }        
+				}
+			}
 		}
+
+
+
+
+		// p {
+		// 	margin: -0.5vmin 0 0;
+		// 	opacity: 0.6;
+		// 	font-size: 0.75rem;
+		// }
 		
 	}
 }

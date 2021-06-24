@@ -1,17 +1,21 @@
 // -------------------------------------------------------------------------
 //    Main
 //--------------------------------------------------------------------------
+@import 'headinfo';
+@import 'hourlyforecast';
+@import 'dailyforecast';
 @import 'currentweather';
 @import 'location';
 
 .main {
-  flex-grow: 10;
-
   position: relative;
   z-index: 2;// Add z-index to show them on top of the dark mode overlay and prevent the color change
-  background: $linear-gradient;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin: 0;
+  max-width: calc(100vw - 2vmin);// TODO Check it
+  border: 1px solid violet;
+    // background: $linear-gradient;
+    // background-clip: text;
+    // -webkit-text-fill-color: transparent;
 
   // Styles for tabs
   > input[type=radio] {
@@ -29,17 +33,16 @@
     bottom: 0;
     z-index: 3;
     width: calc(100vw/3);
-    height: 7vh;
-    border-top: 1px solid $secondary-color;
-    background-image: $theme-color;
-    font-size: 4vmin;
+    height: 13vmin;
+    background: var(--black);
+    font-size: 3vmin;
     transition: background-color .4s;
     cursor: pointer;
     user-select: none;
-    -webkit-text-fill-color: grey;
+    -webkit-text-fill-color: var(--grey);
     
     &::before {
-      font-size: 6.5vmin;
+      font-size: 5vmin;
     }
 
     &[for=tab-nav-1] {
@@ -69,42 +72,6 @@
       }
     }
   }
-  
-  .refreshbtn {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-
-    position: fixed;
-    right: 2vw;
-    top: 20vmin;
-    z-index: 2;
-    transform: translate(0, 0);
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    // outline: none;
-    background-image: $theme-color;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color .4s;
-    cursor: pointer;
-    user-select: none;
-    -webkit-text-fill-color:black;
-
-    &::before {
-      content: '🔄';
-    }
-
-    &:hover {
-        transform: rotate(280deg);
-        transition: 2.70s;
-        opacity: 0.6;
-    }
-  }
 
   .container {
     position: relative;
@@ -120,158 +87,54 @@
   #tab-nav-3:checked ~ .container > div:nth-child(3) {
     display: block;
   }
+
+  #tab-nav-1:checked ~ label[for=tab-nav-1],
+  #tab-nav-2:checked ~ label[for=tab-nav-2],
+  #tab-nav-3:checked ~ label[for=tab-nav-3] {
+    -webkit-text-fill-color: var(--white);
+
+    &::before {
+      -webkit-text-fill-color: initial;//TODO Check it
+    }
+  }
   // .Styles for tabs
 
+  // Refresh btn
+  .refreshbtn {
+    visibility: hidden;
+    position: fixed;
+    bottom: 1vmin;
+    right: 1vmin;
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    // outline: none;
+    background-image: $theme-color;
+    font-size: 1rem;
+    font-weight: bold;
+    opacity: 0.5;
+    // transition: background-color .4s;
+    // transition: all 200ms cubic-bezier(.71,0,.33,1.56) 0.1s;
+    // transition: opacity 200ms cubic-bezier(.29, -0.32, .68, .41) .4s;
+    will-change: transform;
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    -webkit-text-fill-color: var(--black);
 
-
-
-  .weatherforecast {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    // scrollbar-color: rebeccapurple green;
-    // scrollbar-width: thin;
-
-    font-size: 0.8rem;
-    padding-bottom: 5vmin;
-
-    .hourlyforecast {
-      position: relative;
-      margin: 0 1vmin;
-      padding-top: 5vmin;
-      text-align: center;
-
-      &:first-of-type {
-        .hour {
-          &::before {
-            content: 'Сьогодні';
-            position: absolute;
-            bottom: 22vmin;
-            left: 0;
-            -webkit-text-fill-color:white;
-          }
-        }
-      }
-
-      .weather-icon {
-        width: 10vw;
-        height: 4vh;
-
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
-      .precipitationprobability {
-        font-size: 0.7rem;
-
-        &::before {
-          content: '☂';
-        }
-        &::after {
-          content: '%';
-        }
-      }
+    &::before {
+      content: '↻';
     }
-    .temperature {
-      margin-top: 5vmin;
 
-      &::after {
-        content: '°';
-      }
+    &:hover {
+      -webkit-text-fill-color:black;
+      opacity: 1;
     }
   }
-
-
-  // daily forecasts
-  .dailyforecasts {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    margin: 2vh auto;
-
-    .dailyforecast {
-      text-align: center;
-
-      &:first-of-type {
-        .day {
-          &::before {
-            content: '🗓';
-            position: absolute;
-            left: 0;
-            -webkit-text-fill-color:invert($color: #000000);
-          }
-        }
-        .weather-icon {}
-        .sunnyhours {
-          &::before {
-            content: '🌞';
-            position: absolute;
-            left: 0;
-            -webkit-text-fill-color:invert($color: #000000);
-          }
-          &:hover {
-            &::after {
-              content: 'Кількість сонячних годин';
-              position: absolute;
-              left: 0;
-              bottom: 10vh;
-              width: 50vmin;
-              height: auto;
-              background: rgba($color: #ffffff, $alpha: 0.9);
-              -webkit-text-fill-color:#000000;
-            }
-          }
-        }
-        .temperaturemin {
-          &::before {
-            content: '🌡';
-            position: absolute;
-            left: 0;
-            -webkit-text-fill-color:invert($color: #000000);
-          }
-        }
-        .temperaturemax {
-          &::before {
-            content: '🌡';
-            position: absolute;
-            left: 0;
-            -webkit-text-fill-color:invert($color: #000000);
-          }
-        }
-      }
-      
-      
-
-      .weather-icon {
-        width: 15vmin;
-        height: 10vmin;
-
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
-
-      .temperaturemin,
-      .temperaturemax {
-        &::after {
-          content: '°';
-        }
-      }
-    }
-  }
-
 }
 
 .disablelocation {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
   text-align: center;
 }

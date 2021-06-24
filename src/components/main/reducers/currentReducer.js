@@ -8,7 +8,7 @@ const initState = {
 	headline: {},
 	weather: {},
 	hourlyforecast: [],
-	forecast: []
+	dailyforecast: []
 };
 
 const currentReducer = (state = initState, action) => {
@@ -32,7 +32,7 @@ const currentReducer = (state = initState, action) => {
 	}
 	if (action.type === SET_DAILY_FORECAST) {
 		console.log(action);
-		return {...state, forecast: action.payload.forecast.map((item) => ({
+		return {...state, dailyforecast: action.payload.dailyforecast.map((item) => ({
 			Date: item.Date,
 			Icon: item.Day.Icon,
 			HoursOfSun: item.HoursOfSun,

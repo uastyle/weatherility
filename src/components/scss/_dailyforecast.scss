@@ -1,0 +1,49 @@
+// -------------------------------------------------------------------------
+//    Daily forecasts
+//--------------------------------------------------------------------------
+  // daily forecasts
+  .dailyforecast {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 6vmin auto;
+
+    .dailyforecast__item {
+      text-align: center;
+
+      &:first-of-type {
+        // margin-left: 0.6rem;
+        // .day {
+        //   &::before {
+        //     content: '🗓';
+        //     position: absolute;
+        //     left: 0;
+        //     -webkit-text-fill-color:invert($color: #000000);
+        //   }
+        // }
+
+      }// .first-of-type
+    
+      .weather-icon {
+        width: 12vmin;
+        height: 8vmin;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      // TODO Fix it
+      .sunnyhours {
+        display: none;// !important 
+        margin: 1vmin 0;
+      }
+
+      .temperaturemin,
+      .temperaturemax {
+        &::after {
+          content: '°';
+        }
+      }
+    }
+  }

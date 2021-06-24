@@ -1,11 +1,15 @@
 import React from 'react';
 
-const Header = (props) => 
+const Header = () =>
   <header className='header'>
     	<div className='logo' role='banner'>
 			<a href='/'>
 				<h3>Weatherility</h3>
-				<p>weather forecast without devilry</p>
+				<div className="morphing">
+					<p className="word">— weather forecast</p>
+					<p className="word">without devilry!</p>
+				</div>
+				
 			</a>
 		</div>
   </header>

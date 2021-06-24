@@ -1,10 +1,22 @@
 // -------------------------------------------------------------------------
 //    Variables
 //--------------------------------------------------------------------------
+
+// Native CSS variables
+html {
+    --white: #ffffff;
+    --blue: #147ec1;
+    --lgt-blue: #3db5eb;
+    --lgtr-blue: #a6f7ff;
+    --drk-blue: #1663a0;
+    --grey:#7c7c7c;
+    --black: #32383c;
+}
+
+// SCSS variables
 $primary: #ffffff;
 // $primaryLight:;
 $primaryDark:  #798895;
-
 $secondary: linear-gradient(45deg, #05afe5 0%, #05e2b3 100%);
 // $secondaryLight:
 $secondaryDark: radial-gradient(ellipse at center, #6f6f6f 0%, #4a4a4a 100%);
